@@ -254,3 +254,20 @@ div.content {
     float: none;
   }
 }
+
+.video-left-col{
+  width:70%;
+  float:left;
+  border: 1px solid red;
+}
+
+.thumbnail-right-col{
+  width: 30%;
+  float:right;
+  border: 1px solid black;
+}
+
+.video-obj{
+  width: 80%;
+  margin:100px;
+}
