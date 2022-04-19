@@ -86,7 +86,7 @@
 .container {
   position: relative;
   border-radius: 5px;
-  background-color: lightblue;
+  background-color: dodgerblue;
   padding: 20px 0 30px 0;
 } 
 
@@ -163,7 +163,7 @@ input:hover,
 /* bottom container */
 .bottom-container {
   text-align: center;
-  background-color: powderblue;
+  background-color: dodgerblue;
   border-radius: 0px 0px 4px 4px;
 }
 
@@ -239,7 +239,7 @@ input:hover,
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-  background-color: cornflowerblue;
+  background-color: lightblue;
   color: white;
 }
 
