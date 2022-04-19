@@ -29,7 +29,8 @@ keyword
             1 => 'Sports',
             2 => 'Music',
             3 => 'Travel',
-            4 => 'Games'
+            4 => 'Games',
+            5 => 'Other'
         );
         foreach($categories as &$key){
             echo '&ensp; <input type="radio" id='.$key.'-radio name='.$radio_name.' value='.$key.'>';
