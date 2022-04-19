@@ -5,5 +5,12 @@
 <?php
   include 'header.php';
 ?>
-
-<p> hello </p>
+<div class="sidebar">
+  <a class="active" href="#home">Access Contact List</a>
+  <a href="#news">My Content</a>
+  <a href="#contact">My Playlists</a>
+  <a href="#about">Update Profile</a>
+</div>
+<div class="anti-sidebar">
+  <h1>Account Settings</h1>
+</div>
