@@ -17,8 +17,8 @@
         <a href="index.php" class="home-btn">MeTube</a>
     </div>
   <div class="search-container">
-    <form>
-      <input type="text" placeholder="Search.." name="search">
+    <form id="searchBar" method="get" action="search.php">
+      <input id="search_content" type="text" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>

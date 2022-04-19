@@ -247,6 +247,12 @@ div.content {
   div.content {margin-left: 0;}
 }
 
+.anti-sidebar{
+  border: 1px solid red;
+  position: fixed;
+  left: 220px;
+}
+
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
   .sidebar a {
@@ -269,5 +275,5 @@ div.content {
 
 .video-obj{
   width: 80%;
-  margin:100px;
+  margin:10%;
 }
