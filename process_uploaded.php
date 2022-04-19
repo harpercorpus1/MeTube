@@ -22,6 +22,8 @@
     $target_file = $target_dir.basename($_FILES['uploaded-file']['name']);
     $uploadOk = 1;
     
+    echo "<br>".$target_file."<br>";
+
     if($_FILES['uploaded-file']['size'] <= 0){
         echo "File is Empty<br>";
         $uploadOk = 0;
