@@ -115,13 +115,13 @@ input:hover,
 
 /* style the submit button */
 .login-inputs [type="submit"]{
-  background-color: skyblue;
+  background-color: dodgerblue;
   color: white;
   cursor: pointer;
 }
 
 .login-inputs [type="submit"] {
-  background-color: skyblue;
+  background-color: dodgerblue;
 }
 
 /* Two-column layout */
@@ -149,7 +149,7 @@ input:hover,
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: dodgerblue;
-  border: 1px solid skyblue;
+  border: 1px solid dodgerblue;
   border-radius: 50%;
   padding: 8px 10px;
   line-height: 1.5;
