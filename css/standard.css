@@ -46,7 +46,7 @@
   }
   
   .topnav .search-container button:hover {
-    background: skyblue;
+    background: dodgerblue;
   }
   
 .sign-in-container{
@@ -74,7 +74,7 @@
   /* z-index: 1; */
   /* top: 0;
   left: 0; */
-  background-color: skyblue;
+  background-color: dodgerblue;
   overflow-x: hidden;
   padding-top: 16px;
   line-height: 1.5;
