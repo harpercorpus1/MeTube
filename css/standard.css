@@ -2,7 +2,7 @@
 
 .topnav {
     overflow: hidden;
-    background-color: darkslateblue;
+    background-color: skyblue;
   
   }
   
@@ -74,7 +74,7 @@
   /* z-index: 1; */
   /* top: 0;
   left: 0; */
-  background-color: darkslateblue;
+  background-color: skyblue;
   overflow-x: hidden;
   padding-top: 16px;
   line-height: 1.5;
@@ -115,7 +115,7 @@ input:hover,
 
 /* style the submit button */
 .login-inputs [type="submit"]{
-  background-color: darkslateblue;
+  background-color: skyblue;
   color: white;
   cursor: pointer;
 }
