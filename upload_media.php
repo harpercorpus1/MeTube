@@ -17,7 +17,7 @@ keyword
 
 -->
 <body>
-    <form action="process_uploaded.php" method="post" enctype="multipart/form-data">
+    <form class="upload-form-text" action="process_uploaded.php" method="post" enctype="multipart/form-data">
     Media Title: <input type="text" name="video-title"><br>
     <input type="checkbox" name="allow-comments">Allow Comments?<br>
     <input type="checkbox" name="allow-rating">Allow Rating?<br>
@@ -37,6 +37,7 @@ keyword
             echo '<label for='.$key.'-radio>'.$key.'</label><br>';
         }
     ?>
+    Enter Keywords for file (space separated): <input type="text" name="keyword" id="keyword">
     <input type="file" name="uploaded-file" id="uploaded-file">
     <input type="submit" style="width: 100px;">
 

@@ -1,5 +1,6 @@
 <?php
   include 'header.php';
+  include_once 'function.php'
 ?>
 
 <h1> Received </h1>
@@ -17,26 +18,83 @@
     }else{
         echo "File Not Found";
     }
+    echo "<br>Keyword: " . $_POST['keyword'] . "<br>";
+    $keyword_arr = explode(" ", $_POST['keyword']);
+    foreach($keyword_arr as &$keyword){
+        echo $keyword . "<br>";
+    }
 
-    $target_dir = "files/vid/";
+    // change this line when Raj finishes up the User account sequence
+    $username = "harper";
+
+    $target_dir = "files/".$username."/";
     $target_file = $target_dir.basename($_FILES['uploaded-file']['name']);
     $uploadOk = 1;
     
-    echo "<br>".$target_file."<br>";
+    echo "<br>target file: ".$target_file."<br>";
+    echo "<br>target dir: ".$target_dir."<br>";
 
     if($_FILES['uploaded-file']['size'] <= 0){
         echo "File is Empty<br>";
         $uploadOk = 0;
     }
+
+    $ext = get_extension($_FILES['uploaded-file']['name']);
+    if(is_valid_filetype($$_FILES['uploaded-file']['name'])){
+        echo "Sorry File Type ". $ext . " is NOT allowed<br>Only Files with the extensions | ";
+        foreach($allowed_filetypes as &$type){
+            echo $type . " | ";
+        }
+        echo "are Allowed";
+        $uploadOk = 0;
+    }
+
     if($uploadOk == 0){
         echo "File Could Not Be Uploaded<br>";
     }else{
         if(move_uploaded_file($_FILES['uploaded-file']['tmp_name'], $target_file)){
             echo "File ".htmlspecialchars(basename($_FILES['uploaded-file']['name']))." has been uploaded<br>";
+            $query = "insert into media-id";
         }else{
-            echo "There was an Error Uploaded Your File<br>";
+            echo "There was an Error Uploading Your File<br>";
         }
     }
+
+    /* --------- NEED TO FILL ----------- */
+
+    $username = 'harper';
+
+    /* ---------              ----------- */
+
+
+    $media_tag = get_filetype_tag($_FILES['uploaded-file']['name']);
+
+    
+    if(isset($_POST['allow-comments'])){
+        $allow_comments = True;
+    }else{
+        $allow_comments = False;
+    }
+
+    if(isset($_POST['allow-ratings'])){
+        $allow_rating = True;
+    }else{
+        $allow_rating = False;
+    }
+
+    $rating = 0;
+
+    echo "media_id: " . generate_media_id() . "<br>";
+    echo "title: " . $_POST['video-title'] . "<br>";
+    echo "username: " . $username . "<br>";
+    echo "filepath: " . $target_file . "<br>";
+    echo "type: " . $media_tag . "<br>";
+    echo "video_category: " . $_POST['Video-Category'] . "<br>";
+    echo "allow_comments: " . $allow_comment . "<br>";
+    echo "rating: " . $rating . "<br>";
+    echo "allow_rating: " . $allow_rating . "<br>";
+
+    
 
 ?>
 </body>
