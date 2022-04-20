@@ -7,7 +7,7 @@
 ?>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form action="action_page.php">
     <div class="row">
       <h2 style="text-align:center">Login</h2>
 
