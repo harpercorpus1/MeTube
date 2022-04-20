@@ -13,14 +13,14 @@
     text-align: center;
     padding: 0px 16px;
     text-decoration: none;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 1.5;
   }
   
   .topnav input[type=text] {
     padding: 6px;
     margin-top: 8px;
-    font-size: 21px;
+    font-size: 18px;
     font-style: bold;
     /* width:80%; */
     border: none;
