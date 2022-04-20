@@ -4,37 +4,34 @@
 
 <?php
   include 'header.php';
-  include_once 'mysql_lib.php'
+  include_once 'mysql_lib.php';
+  include_once 'function.php';
 ?>
 
-<p>hello</p>
 
-<div class="video-left-col">
-    <p>
-        <!-- mysql -h mysql1.cs.clemson.edu -u U12_Proj_DB_8lum -p U12_Proj_DB_36ih -->
-        placeholder
-        <?php 
-            $query = "describe comment";
+<body>
 
-            if($result = $conn->query($query)){
-                while ($row = mysqli_fetch_array($result))
-                    for($i = 0; $i <= (count($row)-1) / 2; $i++){
-                        echo $row[$i];
-                    }
-                    echo "<br>";
-                $result->free_result();
-            }else{
-                echo "Query Rejected";
-            }
-        
-        ?>
-        placeholder
-    </p>
+<?php
+    $username = 'harper';
+    $password = 'corpus';
+    $email = 'hc@gmail.com';
+    $description = 'hey';
 
-</div>
+    if($result = select_user_from_username($username)){
+        if(mysqli_num_rows($result) != 0){
+            echo "That Username is Already Taken<br>Please Go back and Try again";
+        }else{
+            add_user_to_db(
+                $username,
+                $password,
+                $email,
+                $description
+            );
+            // create directory to hold user uploaded media
+            $upload_target_dir = "files/".$_POST['username']."/";
+            mkdir($upload_target_dir);
+        }
+    }
+?>
 
-<div class="thumbnail-right-col">
-    <p>
-        Thumbnails go here
-    </p>
-</div>
+</body>

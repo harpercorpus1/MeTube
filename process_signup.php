@@ -4,7 +4,8 @@
 
 <?php
   include 'header.php';
-  include_once 'mysql_lib.php'
+  include_once 'mysql_lib.php';
+  include_once 'function.php';
 ?>
 
 
@@ -18,17 +19,20 @@
         echo "description: " . $_POST['description']."<br>";
     }
     $query = "select * from user where username like '".$username."';";
+
     if($result = $conn->query($query)){
-        if(mysqli_num_rows($result) >= 1){
+        if(mysqli_num_rows($result) != 0){
             echo "That Username is Already Taken<br>Please Go back and Try again";
         }else{
-            $query = "insert into user values ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['email']."', '".$_POST['description']."');";
-            echo $query;
-            if($result = $conn->query($query)){
-                echo "Query Success<br>";
-            }else{
-                echo "Query Broken<br>";
-            }
+            add_user_to_db(
+                $_POST['username'], 
+                $_POST['password'],
+                $_POST['email'],
+                $_POST['description']
+            );
+            // create directory to hold user uploaded media
+            $upload_target_dir = "files/".$_POST['username']."/";
+            mkdir($upload_target_dir);
         }
     }
 ?>
