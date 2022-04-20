@@ -1,5 +1,8 @@
 <?php
   include 'header.php';
+  include_once 'mysql_lib.php'
+
+  $user_data = check_login($conn);
 ?>
 
 <div class="sidebar">

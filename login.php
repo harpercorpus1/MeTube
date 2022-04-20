@@ -4,6 +4,7 @@
 
 <?php
   include 'header.php';
+  include_once 'mysql_lib.php'
 ?>
 
 <div class="container">
