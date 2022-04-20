@@ -23,6 +23,14 @@
     </form>
   </div>
     <div>
-        <a href="account.php" class="account-btn">Account</a>
+      <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+          $target = 'account.php';
+        } else {
+          $target = 'login.php';
+        }
+        echo '<a href='.$target.' class="account-btn">Account</a>'
+
+      ?>
     </div>
 </div>

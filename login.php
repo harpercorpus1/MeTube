@@ -8,7 +8,7 @@
 ?>
 
 <div class="container">
-  <form action="action_page.php">
+  <form action="process_login.php" method="get">
     <div class="row">
       <h2 style="text-align:center">Login</h2>
 

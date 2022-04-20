@@ -1,44 +1,40 @@
 <?php
   include 'header.php';
-  include_once 'mysql_lib.php'
+  include_once 'function.php';
+  include_once 'mysql_lib.php';
 ?>
 
 <?php
-    $filepath = $conn->
+    $media_id = $_GET['media-id'];
+
+    $result = mysqli_fetch_array(get_media_from_id($media_id));
+    
+    $filename = $result['filepath'];
+
     $query = "select * from media_file where title not like 'bunny' limit 10";
     echo '<div class="video-left-col">';
-        echo'<video class="video-obj" src='.$filename'. type="video/mp4" controls>'
+        echo '<video class="video-obj" src='.$filename.' type="video/mp4" controls>';
+?>
             Your Browser does not support Video
         </video>
     </div>
-?>
+
 <div class="thumbnail-right-col">
     <h1>
-        Recommended Videos
+        Recommended Media
     </h1>
 
     <p>
         <?php 
-            $query = "select * from media_file where title not like bunny limit 10";
+            $result = get_recommended_without_current($media_id);
 
-            echo '<br>';
-
-            if($result = $conn->query($query)){
-                $rowcount = mysqli_num_rows($result);
-                if($rowcount == 0){
-                    echo "Empty Return";
-                }
-                else{
-                    while ($row = mysqli_fetch_array($result)){
-                        for($i = 0; $i <= (count($row)-1) / 2; $i++){
-                            echo $row[$i];
-                        }
-                        echo "<br>";
-                    }
-                    $result->free_result();
-                }
+            if($result == NULL or !($num_rows = mysqli_num_rows($result))){
+                echo "No Recommended Media at This Time";
             }else{
-                echo "Query Rejected";
+                for($i = 0; $i < $num_rows; $i++){
+                    $row = mysqli_fetch_array($result);
+                    echo $row['filepath']. "<br>";
+                }
             }
         
         ?>
@@ -52,26 +48,15 @@
 
     <p>
         <?php 
-            $query = "select * from media_file limit 10";
-
-            echo '<br>';
-
-            if($result = $conn->query($query)){
-                $rowcount = mysqli_num_rows($result);
-                if($rowcount == 0){
-                    echo "Empty Return";
-                }
-                else{
-                    while ($row = mysqli_fetch_array($result)){
-                        for($i = 0; $i <= (count($row)-1) / 2; $i++){
-                            echo $row[$i];
-                        }
-                        echo "<br>";
-                    }
-                    $result->free_result();
-                }
+            $result = get_comments_on_current($media_id);
+            if($result == NULL or !($num_rows = mysqli_num_rows($result))){
+                echo "This Video has no Comments";
             }else{
-                echo "Query Rejected";
+                $num_rows = mysqli_num_rows($result);
+                for($i = 0; $i < $num_rows; $i++){
+                    $row = mysqli_fetch_array($result);
+                    echo $row['username'] . ": " . $row['comment_content']. "<br>";
+                }
             }
         
         ?>

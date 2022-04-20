@@ -1,5 +1,7 @@
 <?php
   include 'header.php';
+  include_once 'function.php';
+  include_once 'mysql_lib.php';
 ?>
 
 <h1> Fill out Form below to upload media <h1>
@@ -24,14 +26,7 @@ keyword
     Video Category:<br>
     <?php
         $radio_name = "Video-Category";
-        $categories = array(
-            0 => 'Comedy',
-            1 => 'Sports',
-            2 => 'Music',
-            3 => 'Travel',
-            4 => 'Games',
-            5 => 'Other'
-        );
+        
         foreach($categories as &$key){
             echo '&ensp; <input type="radio" id='.$key.'-radio name='.$radio_name.' value='.$key.'>';
             echo '<label for='.$key.'-radio>'.$key.'</label><br>';

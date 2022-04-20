@@ -40,7 +40,7 @@
     }
 
     $ext = get_extension($_FILES['uploaded-file']['name']);
-    if(is_valid_filetype($$_FILES['uploaded-file']['name'])){
+    if(is_valid_filetype($_FILES['uploaded-file']['name'])){
         echo "Sorry File Type ". $ext . " is NOT allowed<br>Only Files with the extensions | ";
         foreach($allowed_filetypes as &$type){
             echo $type . " | ";
@@ -90,11 +90,19 @@
     echo "filepath: " . $target_file . "<br>";
     echo "type: " . $media_tag . "<br>";
     echo "video_category: " . $_POST['Video-Category'] . "<br>";
-    echo "allow_comments: " . $allow_comment . "<br>";
+    echo "allow_comments: " . $allow_comments . "<br>";
     echo "rating: " . $rating . "<br>";
     echo "allow_rating: " . $allow_rating . "<br>";
 
-    
+    add_new_media(
+        $_POST['video-title'],
+        $username,
+        $target_file,
+        $media_tag,
+        $_POST['Video-Category'],
+        isset($_POST['allow-comments']),
+        isset($_POST['allow-rating'])
+    );
 
 ?>
 </body>

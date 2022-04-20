@@ -1,5 +1,7 @@
 <?php 
-    session_start();
+    if(session_id() == ''){
+        session_start();
+    }
 ?>
 
 <?php 
@@ -11,6 +13,15 @@
     $allowed_filetypes = array('gif', 'png', 'jpg', 'jpeg', 'mp4');
     $img_filetypes = array('gif', 'png', 'jpg', 'jpeg');
     $video_filetypes = array('mp4');
+
+    $categories = array(
+        0 => 'Comedy',
+        1 => 'Sports',
+        2 => 'Music',
+        3 => 'Travel',
+        4 => 'Games',
+        5 => 'Other'
+    );
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
