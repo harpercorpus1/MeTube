@@ -33,6 +33,7 @@
             // create directory to hold user uploaded media
             $upload_target_dir = "files/".$_POST['username']."/";
             mkdir($upload_target_dir);
+            header('Location: index.php');
         }
     }
 ?>

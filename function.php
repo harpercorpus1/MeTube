@@ -143,7 +143,7 @@
 
     function get_recommended_without_current($id){
         global $conn;
-        $query = "select * from media_file where media_id<>".$id." limit 10;";
+        $query = "select * from media_file where media_id<>".$id." limit 4;";
         if($result = $conn->query($query)){
             return $result;
         }
@@ -197,7 +197,7 @@
 
     function get_playlist_set($username){
         global $conn;
-        $query = "select * from comment inner join media_file on comment.media_id=media_file.media_id where comment.media_id=".$username.";";
+        $query = "select * from comment inner join media_file on comment.media_id=media_file.media_id where comment.username='".$username."';";
         if($result = $conn->query($query)){
             return $result;
         }
@@ -265,4 +265,59 @@
         return NULL;
     }
 
+    function get_personal_media($username){
+        global $conn;
+        $query = "select * from media_file where username='".$username."';";
+        return $conn->query($query);
+    }
+
+    function get_playlist_media($username){
+        
+    }
+
+    function edit_password($username, $password){
+        global $conn;
+        $query = "update user set password='".$password."' where username='".$username."';";
+        return $conn->query($query);
+    }
+
+    function edit_email($username, $email){
+        global $conn;
+        $query = "update user set email='".$email."' where username='".$username."';";
+        return $conn->query($query);
+    }
+
+    function edit_description($username, $desc){
+        global $conn;
+        $query = "update user set biography='".$desc."' where username='".$username."';";
+        return $conn->query($query);
+    }
+
+    function generate_img_labeled($img, $media_id, $class, $title, $username, $date){
+        echo "<div class='preview'>";
+        echo "<a href='videoplayer.php?media-id=".$media_id."'>";
+        echo "<img src='".$img."' class='".$class . "'></a>";
+        echo "<div class='thumbnail-label'>";
+        echo "<h4>Title: ".$title."<br>Username: ".$username."</h4>";
+        echo "</div>";
+        echo "</div>";
+        echo "<div class='separator'></div>";
+    }
+
+    function img_labeled($media_id, $title, $username){
+        echo "<div class='preview'>";
+        echo "<a href='videoplayer.php?media-id=".$media_id."';>";
+        echo "<img src='files/img-place-holder-small.jpg' class='thumbnail'></a>";
+        echo "<div class='thumbnail-label'>";
+        echo "<h4>Title: ".$title."<br>Username: ".$username."</h4>";
+        echo "</div>";
+        echo "</div>";
+    }
+
+    function add_to_keyword($media_id, $keyword){
+        global $conn;
+        $query = "insert into media_keyword values (".$media_id.", '".$keyword."');"; 
+        echo $query;
+        return $conn->query($query);
+    }
 ?>
