@@ -15,8 +15,10 @@
         echo "user found";
         $_SESSION['loggedin'] = True;
         $_SESSION['username'] = $_GET['username'];
+        header('Location: account.php');
+
     }else{
-        echo "user not found";
+        echo "User not found, Please go back and Try again";
     }
    
 ?>

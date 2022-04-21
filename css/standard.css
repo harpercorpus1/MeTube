@@ -262,9 +262,9 @@ div.content {
 }
 
 .anti-sidebar{
-  border: 1px solid red;
   position: fixed;
   left: 220px;
+  width: 500px
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
@@ -277,22 +277,38 @@ div.content {
 }
 
 .video-left-col{
-  width:70%;
+  width:60%;
   float:left;
-  border: 1px solid red;
   line-height: 1.5;
+  padding: 0;
+  margin: 0;
+}
+
+.video-title{
+  text-align:center;
+}
+
+.thumbnail{
+  width: 75%;
+  border: 1px solid black;
+}
+
+.thumbnail-label{
+  width: 80%;
+  float:right;
 }
 
 .thumbnail-right-col{
-  width: 30%;
+  width: 40%;
   float:right;
   border: 1px solid navy;
   line-height: 1.5;
+  padding: 0 5%;
 }
 
 .video-obj{
-  width: 80%;
-  margin:10%;
+  width: 100%;
+  margin:0;
 }
 
 .upload-form-text{
@@ -301,4 +317,8 @@ div.content {
 
 .contact-button{
   
+}
+
+.separator{
+  width: 100%;
 }

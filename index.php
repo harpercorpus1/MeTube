@@ -29,9 +29,7 @@
 <div class='anti-sidebar'>
   <?php
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-      echo "Welcome to the member's area, " . $_SESSION['username'] . "!";
-    } else {
-        echo "Please log in first to see this page.";
+      echo "Welcome to MeTube, " . $_SESSION['username'] . "!";
     }
     echo "<br>";
   ?>
@@ -42,7 +40,6 @@
     }else{
       $cat = 'Home';
     }
-    echo "Category: " . $cat . "<br>";
 
     if($cat == 'Home'){
       $result = get_media();
@@ -50,16 +47,19 @@
       $result = get_media_from_category($cat);
     }
 
+    echo "<h2>Media: ".$cat."</h2>";
     if($result == NULL or !($num_rows = mysqli_num_rows($result))){
       echo "No Media Available<br>";
     }else{
       while($row = mysqli_fetch_array($result)){
-        echo "filepath: " . $row['filepath'] . "<br>";
+        img_labeled($row['media_id'], $row['title'], $row['username']);
+        // echo "filepath: " . $row['filepath'] . "<br>";
       }
     }
 
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
       $result = get_playlist_set($_SESSION['username']);
+      echo "<h2>Playlist</h2>";
       if($result == NULL or !($num_rows = mysqli_num_rows($result))){
         echo "No Media Available<br>";
       }else{
@@ -69,6 +69,7 @@
       }
 
       $result = get_subscription_set($_SESSION['username']);
+      echo "<h2>Subscriptions</h2>";
       if($result == NULL or !($num_rows = mysqli_num_rows($result))){
         echo "No Media Available<br>";
       }else{

@@ -1,38 +1,31 @@
 <?php
   include 'header.php';
-  include_once 'function.php'
+  include_once 'function.php';
+  include_once 'mysql_lib.php';
 ?>
 
 <h1> Received </h1>
 
 <body>
 <?php
-
+    $username=$_SESSION['username'];
     if(isset($_POST['video-title'])){
         echo "Video Title: ".$_POST['video-title']."<br>";
     }else{
         echo "Not Set";
+        return;
     }
     if(isset($_FILES['uploaded-file'])){
         echo "File Found";
     }else{
         echo "File Not Found";
+        return ;
     }
-    echo "<br>Keyword: " . $_POST['keyword'] . "<br>";
     $keyword_arr = explode(" ", $_POST['keyword']);
-    foreach($keyword_arr as &$keyword){
-        echo $keyword . "<br>";
-    }
-
-    // change this line when Raj finishes up the User account sequence
-    $username = "harper";
 
     $target_dir = "files/".$username."/";
     $target_file = $target_dir.basename($_FILES['uploaded-file']['name']);
     $uploadOk = 1;
-    
-    echo "<br>target file: ".$target_file."<br>";
-    echo "<br>target dir: ".$target_dir."<br>";
 
     if($_FILES['uploaded-file']['size'] <= 0){
         echo "File is Empty<br>";
@@ -60,13 +53,6 @@
         }
     }
 
-    /* --------- NEED TO FILL ----------- */
-
-    $username = 'harper';
-
-    /* ---------              ----------- */
-
-
     $media_tag = get_filetype_tag($_FILES['uploaded-file']['name']);
 
     
@@ -84,16 +70,6 @@
 
     $rating = 0;
 
-    echo "media_id: " . generate_media_id() . "<br>";
-    echo "title: " . $_POST['video-title'] . "<br>";
-    echo "username: " . $username . "<br>";
-    echo "filepath: " . $target_file . "<br>";
-    echo "type: " . $media_tag . "<br>";
-    echo "video_category: " . $_POST['Video-Category'] . "<br>";
-    echo "allow_comments: " . $allow_comments . "<br>";
-    echo "rating: " . $rating . "<br>";
-    echo "allow_rating: " . $allow_rating . "<br>";
-
     add_new_media(
         $_POST['video-title'],
         $username,
@@ -103,6 +79,12 @@
         isset($_POST['allow-comments']),
         isset($_POST['allow-rating'])
     );
+
+    $keyword_arr = explode(" ", $_POST['keyword']);
+    $media_id = generate_media_id()-1;
+    foreach($keyword_arr as &$keyword){
+        add_to_keyword($media_id, $keyword);
+    }
 
 ?>
 </body>
